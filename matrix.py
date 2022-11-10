@@ -2,7 +2,6 @@
     File name: matrix.py
     Author: Maksymilian Górski
     Date created: 10/11/2020
-    Date last modified: 10/11/2020
     Python Version: 3.6
     Purpose: Interpreting and calculating operations on n-dimensional Square Matrices
 '''
@@ -165,7 +164,17 @@ class Matrix:
 # Asserts
 from vector import Vector
 
-if __debug__ and __name__ == '__main__':
+def main():
+    m1 = Matrix([3,4,-1,-1])
+    m2 = Matrix([1,2,3,4])
+
+    print(m1)
+    print(m2)
+    print(m1.invert())
+
+    print((m1@m2)@m1.invert())
+
+def runAssertionTests():
     assert Matrix([1, 2, 3, 4]) + Matrix([2, 3, 4, 5]) == Matrix([3, 5, 7, 9])
     assert Matrix([1, 2, 3, 4]) - Matrix([2, 3, 4, 5]) == Matrix([-1, -1, -1, -1])
     assert Matrix([1, 2, 3, 4]) * 10 == Matrix([10, 20, 30, 40])
@@ -197,11 +206,9 @@ if __debug__ and __name__ == '__main__':
     assert (I + m1 @ m2).det() == (I + m2 @ m1).det()
     assert (m1 @ m1.invert() - Matrix.unit(m1.dimension[0])).near_zero(0.001)
 
-m1 = Matrix([3,4,-1,-1])
-m2 = Matrix([1,2,3,4])
+if __debug__ and __name__ == '__main__':
+    runAssertionTests()    
+    main()
 
-print(m1)
-print(m2)
-print(m1.invert())
-
-print((m1@m2)@m1.invert())
+if __name__ == '__main__':
+    main()
